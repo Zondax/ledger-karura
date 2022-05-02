@@ -30,9 +30,9 @@ void crowdloan_accept() {
 #endif
 }
 
-static const char* RELAY_CHAIN_POLKADOT = "Polkadot keys.";
-static const char* RELAY_CHAIN_KUSAMA = "Kusama keys.";
-static const char* PARACHAIN = "Karura keys.";
+static const char* RELAY_CHAIN_POLKADOT = "Polkadot";
+static const char* RELAY_CHAIN_KUSAMA = "Kusama";
+static const char* PARACHAIN = COIN_NAME;
 
 static const char* ACCOUNT_CROWDLOAN = "Crowdloan account.";
 static const char* ACCOUNT_LEGACY = "Legacy account.";
@@ -69,7 +69,7 @@ zxerr_t crowdloan_getItem(int8_t displayIdx,
     }
 
     char tmpBuf[250];
-    snprintf(tmpBuf, sizeof(tmpBuf), "%s %s %s %s, %s",
+    snprintf(tmpBuf, sizeof(tmpBuf), "%s %s %s %s, %s keys.",
                             (char*)PIC(crowdloan_message_00),
                             account_str,
                             (char*)PIC(crowdloan_message_01),
