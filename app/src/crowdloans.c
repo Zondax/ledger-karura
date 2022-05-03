@@ -82,7 +82,7 @@ zxerr_t crowdloan_getItem(int8_t displayIdx,
 zxerr_t crowdloan_enabled() {
 #ifdef APP_CROWDLOAN_MODE_ENABLED
     view_review_init(crowdloan_getItem, crowdloan_getNumItems, crowdloan_accept);
-    view_review_show();
+    view_review_show(0x00);
 #endif
     return zxerr_ok;
 }
