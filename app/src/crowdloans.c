@@ -25,7 +25,7 @@
 
 void crowdloan_accept() {
 #ifdef APP_CROWDLOAN_MODE_ENABLED
-    app_mode_set_crowdloan(true);
+    app_mode_set_crowdloan(!app_mode_crowdloan());
     view_idle_show(0, NULL);
 #endif
 }
