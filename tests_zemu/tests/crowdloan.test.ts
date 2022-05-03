@@ -31,25 +31,34 @@ beforeAll(async () => {
   await Zemu.checkAndPullImage()
 })
 
-const DEVICE_PREFIX = 's'
+async function activateCrowdloanMode(sim: any, model_prefix: string) {
+  // Crowdloan can be activate only when expert mode is enabled
+  await sim.clickRight(`snapshots-tmp/${model_prefix}-crowdloans/000.png`)
+  await sim.clickRight(`snapshots-tmp/${model_prefix}-crowdloans/001.png`)
+  await sim.clickBoth(`snapshots-tmp/${model_prefix}-crowdloans/002.png`, false)
+  await sim.clickBoth(`snapshots-tmp/${model_prefix}-crowdloans/003.png`, false)
+  await sim.clickLeft(`snapshots-tmp/${model_prefix}-crowdloans/004.png`)
+  await sim.clickLeft(`snapshots-tmp/${model_prefix}-crowdloans/005.png`)
 
-async function activateCrowdloanMode(sim: any) {
   // Activale Expert mode
-  await sim.clickRight(`snapshots-tmp/${DEVICE_PREFIX}-crowdloans/000.png`)
-  await sim.clickBoth(`snapshots-tmp/${DEVICE_PREFIX}-crowdloans/001.png`)
+  await sim.clickRight(`snapshots-tmp/${model_prefix}-crowdloans/006.png`)
+  await sim.clickBoth(`snapshots-tmp/${model_prefix}-crowdloans/007.png`)
 
   //Activate Crowdloan
-  await sim.clickRight(`snapshots-tmp/${DEVICE_PREFIX}-crowdloans/002.png`)
-  await sim.clickBoth(`snapshots-tmp/${DEVICE_PREFIX}-crowdloans/003.png`)
+  await sim.clickRight(`snapshots-tmp/${model_prefix}-crowdloans/008.png`)
+  await sim.clickBoth(`snapshots-tmp/${model_prefix}-crowdloans/009.png`)
 
   // Review warning message
   const reviewSteps = sim.startOptions.model === 'nanos' ? 6 : 5
   for (let i = 0; i < reviewSteps; i += 1) {
-    await sim.clickRight(`snapshots-tmp/${DEVICE_PREFIX}-crowdloans/01${i}.png`)
+    await sim.clickRight(`snapshots-tmp/${model_prefix}-crowdloans/0${10+i}.png`)
   }
 
   // Accept
-  await sim.clickBoth(`snapshots-tmp/${DEVICE_PREFIX}-crowdloans/100.png`)
+  await sim.clickBoth(`snapshots-tmp/${model_prefix}-crowdloans/200.png`)
+
+  await sim.clickRight(`snapshots-tmp/${model_prefix}-crowdloans/201.png`)
+  await sim.clickRight(`snapshots-tmp/${model_prefix}-crowdloans/202.png`)
 }
 
 describe('Crowdloan', function () {
@@ -73,7 +82,7 @@ describe('Crowdloan', function () {
       expect(resp.return_code).toEqual(0x9000)
       expect(resp.error_message).toEqual('No errors')
 
-      await activateCrowdloanMode(sim)
+      await activateCrowdloanMode(sim, m.prefix)
 
       resp = await app.getAddress(0x80000000, 0x80000000, 0x80000000)
 
