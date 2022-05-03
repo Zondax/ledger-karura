@@ -33,7 +33,7 @@ beforeAll(async () => {
 
 async function activateSecretMode(sim: any) {
   // Get to Zondax.ch menu
-  for (let i = 0; i < 3; i += 1) {
+  for (let i = 0; i < 4; i += 1) {
     await sim.clickRight()
   }
 
