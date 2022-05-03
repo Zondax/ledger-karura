@@ -52,6 +52,7 @@ static void h_crowdloan_update();
 
 ux_state_t ux;
 extern ux_menu_state_t ux_menu;
+static uint8_t mustReply = 0;
 
 void os_exit(uint32_t id) {
     (void)id;
@@ -230,7 +231,7 @@ void h_review_button_right() {
 
 void h_review_button_both() {
     zemu_log_stack("h_review_button_both");
-    h_review_action();
+    h_review_action(mustReply);
 }
 
 //////////////////////////
@@ -321,8 +322,9 @@ void h_secret_click() {
 }
 #endif
 
-void view_review_show_impl() {
+void view_review_show_impl(uint8_t requireReply) {
     zemu_log_stack("view_review_show_impl");
+    mustReply = requireReply;
 
     h_paging_init();
 
