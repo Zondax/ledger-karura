@@ -33,32 +33,33 @@ beforeAll(async () => {
 
 async function activateCrowdloanMode(sim: any, model_prefix: string) {
   // Crowdloan can be activate only when expert mode is enabled
-  await sim.clickRight(`snapshots-tmp/${model_prefix}-crowdloans/000.png`)
-  await sim.clickRight(`snapshots-tmp/${model_prefix}-crowdloans/001.png`)
-  await sim.clickBoth(`snapshots-tmp/${model_prefix}-crowdloans/002.png`, false)
-  await sim.clickBoth(`snapshots-tmp/${model_prefix}-crowdloans/003.png`, false)
-  await sim.clickLeft(`snapshots-tmp/${model_prefix}-crowdloans/004.png`)
-  await sim.clickLeft(`snapshots-tmp/${model_prefix}-crowdloans/005.png`)
+  await sim.clickRight()
+  await sim.clickRight()
+  await sim.clickBoth('', false)
+  await sim.clickBoth('', false)
+  await sim.clickLeft()
+  await sim.clickLeft()
 
   // Activale Expert mode
-  await sim.clickRight(`snapshots-tmp/${model_prefix}-crowdloans/006.png`)
-  await sim.clickBoth(`snapshots-tmp/${model_prefix}-crowdloans/007.png`)
+  await sim.clickRight()
+  await sim.clickBoth()
 
   //Activate Crowdloan
-  await sim.clickRight(`snapshots-tmp/${model_prefix}-crowdloans/008.png`)
-  await sim.clickBoth(`snapshots-tmp/${model_prefix}-crowdloans/009.png`)
+  await sim.clickRight()
+  await sim.clickBoth()
 
   // Review warning message
   const reviewSteps = sim.startOptions.model === 'nanos' ? 6 : 5
   for (let i = 0; i < reviewSteps; i += 1) {
-    await sim.clickRight(`snapshots-tmp/${model_prefix}-crowdloans/0${10+i}.png`)
+    await sim.clickRight()
   }
 
   // Accept
-  await sim.clickBoth(`snapshots-tmp/${model_prefix}-crowdloans/200.png`)
+  await sim.clickBoth()
 
-  await sim.clickRight(`snapshots-tmp/${model_prefix}-crowdloans/201.png`)
-  await sim.clickRight(`snapshots-tmp/${model_prefix}-crowdloans/202.png`)
+  // Just go forward
+  await sim.clickRight()
+  await sim.clickRight()
 }
 
 describe('Crowdloan', function () {
