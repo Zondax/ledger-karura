@@ -23,9 +23,9 @@
 #include "app_mode.h"
 #include "zxformat.h"
 
-void crowdloan_accept() {
-#ifdef APP_CROWDLOAN_MODE_ENABLED
-    app_mode_set_crowdloan(!app_mode_crowdloan());
+void account_accept() {
+#ifdef APP_ACCOUNT_MODE_ENABLED
+    app_mode_set_account(!app_mode_account());
     view_idle_show(0, NULL);
 #endif
 }
@@ -41,13 +41,13 @@ static const char *crowdloan_message_00 = "You are about to switch to";
 static const char *crowdloan_message_01 = "If you are not sure why you are here, reject or unplug your device immediately.";
 static const char *crowdloan_message_02 = "Activating this mode will allow you to sign transactions using";
 
-zxerr_t crowdloan_getNumItems(uint8_t *num_items) {
+zxerr_t account_getNumItems(uint8_t *num_items) {
     zemu_log_stack("crowdloan_getNumItems");
     *num_items = 1;
     return zxerr_ok;
 }
 
-zxerr_t crowdloan_getItem(int8_t displayIdx,
+zxerr_t account_getItem(int8_t displayIdx,
                        char *outKey, uint16_t outKeyLen,
                        char *outVal, uint16_t outValLen,
                        uint8_t pageIdx, uint8_t *pageCount) {
@@ -63,7 +63,7 @@ zxerr_t crowdloan_getItem(int8_t displayIdx,
     if (derivation_path == 0x1b2) {
         chain_str = (char*)PIC(RELAY_CHAIN_KUSAMA);
     }
-    if(app_mode_crowdloan()) {
+    if(app_mode_account()) {
         account_str = (char*)PIC(ACCOUNT_LEGACY);
         chain_str = (char*)PIC(PARACHAIN);
     }
@@ -79,9 +79,9 @@ zxerr_t crowdloan_getItem(int8_t displayIdx,
     return zxerr_ok;
 }
 
-zxerr_t crowdloan_enabled() {
-#ifdef APP_CROWDLOAN_MODE_ENABLED
-    view_review_init(crowdloan_getItem, crowdloan_getNumItems, crowdloan_accept);
+zxerr_t account_enabled() {
+#ifdef APP_ACCOUNT_MODE_ENABLED
+    view_review_init(account_getItem, account_getNumItems, account_accept);
     view_review_show(0x00);
 #endif
     return zxerr_ok;
