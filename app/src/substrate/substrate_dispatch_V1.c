@@ -1509,16 +1509,6 @@ const char* _getMethod_Name_V1(uint8_t moduleIdx, uint8_t callIdx)
         return STR_ME_SET_KEYS;
     case 10753: /* module 42 call 1 */
         return STR_ME_PURGE_KEYS;
-    default:
-        return _getMethod_Name_V1_ParserFull(callPrivIdx);
-    }
-
-    return NULL;
-}
-
-const char* _getMethod_Name_V1_ParserFull(uint16_t callPrivIdx)
-{
-    switch (callPrivIdx) {
 #ifdef SUBSTRATE_PARSER_FULL
     case 0: /* module 0 call 0 */
         return STR_ME_FILL_BLOCK;
@@ -1530,32 +1520,8 @@ const char* _getMethod_Name_V1_ParserFull(uint16_t callPrivIdx)
         return STR_ME_SET_CODE;
     case 4: /* module 0 call 4 */
         return STR_ME_SET_CODE_WITHOUT_CHECKS;
-    case 5: /* module 0 call 5 */
-        return STR_ME_SET_STORAGE;
-    case 6: /* module 0 call 6 */
-        return STR_ME_KILL_STORAGE;
-    case 7: /* module 0 call 7 */
-        return STR_ME_KILL_PREFIX;
     case 8: /* module 0 call 8 */
         return STR_ME_REMARK_WITH_EVENT;
-    case 256: /* module 1 call 0 */
-        return STR_ME_SET;
-    case 512: /* module 2 call 0 */
-        return STR_ME_SCHEDULE;
-    case 513: /* module 2 call 1 */
-        return STR_ME_CANCEL;
-    case 514: /* module 2 call 2 */
-        return STR_ME_SCHEDULE_NAMED;
-    case 515: /* module 2 call 3 */
-        return STR_ME_CANCEL_NAMED;
-    case 516: /* module 2 call 4 */
-        return STR_ME_SCHEDULE_AFTER;
-    case 517: /* module 2 call 5 */
-        return STR_ME_SCHEDULE_NAMED_AFTER;
-    case 769: /* module 3 call 1 */
-        return STR_ME_AS_DERIVATIVE;
-    case 771: /* module 3 call 3 */
-        return STR_ME_DISPATCH_AS;
     case 1024: /* module 4 call 0 */
         return STR_ME_AS_MULTI_THRESHOLD_1;
     case 1025: /* module 4 call 1 */
@@ -1584,20 +1550,6 @@ const char* _getMethod_Name_V1_ParserFull(uint16_t callPrivIdx)
         return STR_ME_REJECT_ANNOUNCEMENT;
     case 1289: /* module 5 call 9 */
         return STR_ME_PROXY_ANNOUNCED;
-    case 1536: /* module 6 call 0 */
-        return STR_ME_PAUSE_TRANSACTION;
-    case 1537: /* module 6 call 1 */
-        return STR_ME_UNPAUSE_TRANSACTION;
-    case 1792: /* module 7 call 0 */
-        return STR_ME_SCHEDULE_TASK;
-    case 2048: /* module 8 call 0 */
-        return STR_ME_NOTE_PREIMAGE;
-    case 2049: /* module 8 call 1 */
-        return STR_ME_UNNOTE_PREIMAGE;
-    case 2050: /* module 8 call 2 */
-        return STR_ME_REQUEST_PREIMAGE;
-    case 2051: /* module 8 call 3 */
-        return STR_ME_UNREQUEST_PREIMAGE;
     case 2561: /* module 10 call 1 */
         return STR_ME_SET_BALANCE;
     case 2565: /* module 10 call 5 */
@@ -1610,28 +1562,14 @@ const char* _getMethod_Name_V1_ParserFull(uint16_t callPrivIdx)
         return STR_ME_SWEEP_DUST;
     case 3328: /* module 13 call 0 */
         return STR_ME_CLAIM;
-    case 3329: /* module 13 call 1 */
-        return STR_ME_VESTED_TRANSFER;
-    case 3330: /* module 13 call 2 */
-        return STR_ME_UPDATE_VESTING_SCHEDULES;
-    case 3331: /* module 13 call 3 */
-        return STR_ME_CLAIM_FOR;
     case 3584: /* module 14 call 0 */
         return STR_ME_SET_ALTERNATIVE_FEE_SWAP_PATH;
-    case 3585: /* module 14 call 1 */
-        return STR_ME_ENABLE_CHARGE_FEE_POOL;
     case 3586: /* module 14 call 2 */
         return STR_ME_DISABLE_CHARGE_FEE_POOL;
     case 3587: /* module 14 call 3 */
         return STR_ME_WITH_FEE_PATH;
     case 3588: /* module 14 call 4 */
         return STR_ME_WITH_FEE_CURRENCY;
-    case 5120: /* module 20 call 0 */
-        return STR_ME_PROPOSE_SPEND;
-    case 5121: /* module 20 call 1 */
-        return STR_ME_REJECT_PROPOSAL;
-    case 5122: /* module 20 call 2 */
-        return STR_ME_APPROVE_PROPOSAL;
     case 5376: /* module 21 call 0 */
         return STR_ME_PROPOSE_BOUNTY;
     case 5377: /* module 21 call 1 */
@@ -1650,20 +1588,6 @@ const char* _getMethod_Name_V1_ParserFull(uint16_t callPrivIdx)
         return STR_ME_CLOSE_BOUNTY;
     case 5384: /* module 21 call 8 */
         return STR_ME_EXTEND_BOUNTY_EXPIRY;
-    case 5632: /* module 22 call 0 */
-        return STR_ME_REPORT_AWESOME;
-    case 5633: /* module 22 call 1 */
-        return STR_ME_RETRACT_TIP;
-    case 5634: /* module 22 call 2 */
-        return STR_ME_TIP_NEW;
-    case 5635: /* module 22 call 3 */
-        return STR_ME_TIP;
-    case 5636: /* module 22 call 4 */
-        return STR_ME_CLOSE_TIP;
-    case 5637: /* module 22 call 5 */
-        return STR_ME_SLASH_TIP;
-    case 10240: /* module 40 call 0 */
-        return STR_ME_SET_UNCLES;
     case 10496: /* module 41 call 0 */
         return STR_ME_SET_INVULNERABLES;
     case 10497: /* module 41 call 1 */
@@ -1678,188 +1602,10 @@ const char* _getMethod_Name_V1_ParserFull(uint16_t callPrivIdx)
         return STR_ME_LEAVE_INTENT;
     case 10502: /* module 41 call 6 */
         return STR_ME_WITHDRAW_BOND;
-    case 11520: /* module 45 call 0 */
-        return STR_ME_SCHEDULE_SESSION_DURATION;
-    case 12800: /* module 50 call 0 */
-        return STR_ME_SERVICE_OVERWEIGHT;
-    case 12801: /* module 50 call 1 */
-        return STR_ME_SUSPEND_XCM_EXECUTION;
-    case 12802: /* module 50 call 2 */
-        return STR_ME_RESUME_XCM_EXECUTION;
-    case 12803: /* module 50 call 3 */
-        return STR_ME_UPDATE_SUSPEND_THRESHOLD;
-    case 12804: /* module 50 call 4 */
-        return STR_ME_UPDATE_DROP_THRESHOLD;
-    case 12805: /* module 50 call 5 */
-        return STR_ME_UPDATE_RESUME_THRESHOLD;
-    case 12806: /* module 50 call 6 */
-        return STR_ME_UPDATE_THRESHOLD_WEIGHT;
-    case 12807: /* module 50 call 7 */
-        return STR_ME_UPDATE_WEIGHT_RESTRICT_DECAY;
-    case 12808: /* module 50 call 8 */
-        return STR_ME_UPDATE_XCMP_MAX_INDIVIDUAL_WEIGHT;
-    case 13056: /* module 51 call 0 */
-        return STR_ME_SEND;
-    case 13057: /* module 51 call 1 */
-        return STR_ME_TELEPORT_ASSETS;
-    case 13058: /* module 51 call 2 */
-        return STR_ME_RESERVE_TRANSFER_ASSETS;
-    case 13059: /* module 51 call 3 */
-        return STR_ME_EXECUTE;
-    case 13060: /* module 51 call 4 */
-        return STR_ME_FORCE_XCM_VERSION;
-    case 13061: /* module 51 call 5 */
-        return STR_ME_FORCE_DEFAULT_XCM_VERSION;
-    case 13062: /* module 51 call 6 */
-        return STR_ME_FORCE_SUBSCRIBE_VERSION_NOTIFY;
-    case 13063: /* module 51 call 7 */
-        return STR_ME_FORCE_UNSUBSCRIBE_VERSION_NOTIFY;
-    case 13064: /* module 51 call 8 */
-        return STR_ME_LIMITED_RESERVE_TRANSFER_ASSETS;
-    case 13065: /* module 51 call 9 */
-        return STR_ME_LIMITED_TELEPORT_ASSETS;
-    case 13568: /* module 53 call 0 */
-        return STR_ME_SERVICE_OVERWEIGHT;
-    case 13824: /* module 54 call 0 */
-        return STR_ME_TRANSFER;
-    case 13825: /* module 54 call 1 */
-        return STR_ME_TRANSFER_MULTIASSET;
-    case 13826: /* module 54 call 2 */
-        return STR_ME_TRANSFER_WITH_FEE;
-    case 13827: /* module 54 call 3 */
-        return STR_ME_TRANSFER_MULTIASSET_WITH_FEE;
-    case 13828: /* module 54 call 4 */
-        return STR_ME_TRANSFER_MULTICURRENCIES;
-    case 13829: /* module 54 call 5 */
-        return STR_ME_TRANSFER_MULTIASSETS;
-    case 14336: /* module 56 call 0 */
-        return STR_ME_SEND_AS_SOVEREIGN;
-    case 15360: /* module 60 call 0 */
-        return STR_ME_DISPATCH_AS;
-    case 15361: /* module 60 call 1 */
-        return STR_ME_SCHEDULE_DISPATCH;
-    case 15362: /* module 60 call 2 */
-        return STR_ME_FAST_TRACK_SCHEDULED_DISPATCH;
-    case 15363: /* module 60 call 3 */
-        return STR_ME_DELAY_SCHEDULED_DISPATCH;
-    case 15364: /* module 60 call 4 */
-        return STR_ME_CANCEL_SCHEDULED_DISPATCH;
-    case 15365: /* module 60 call 5 */
-        return STR_ME_AUTHORIZE_CALL;
-    case 15366: /* module 60 call 6 */
-        return STR_ME_REMOVE_AUTHORIZED_CALL;
-    case 15367: /* module 60 call 7 */
-        return STR_ME_TRIGGER_CALL;
-    case 15616: /* module 61 call 0 */
-        return STR_ME_SET_MEMBERS;
-    case 15617: /* module 61 call 1 */
-        return STR_ME_EXECUTE;
-    case 15618: /* module 61 call 2 */
-        return STR_ME_PROPOSE;
-    case 15619: /* module 61 call 3 */
-        return STR_ME_VOTE;
-    case 15620: /* module 61 call 4 */
-        return STR_ME_CLOSE;
-    case 15621: /* module 61 call 5 */
-        return STR_ME_DISAPPROVE_PROPOSAL;
-    case 15872: /* module 62 call 0 */
-        return STR_ME_ADD_MEMBER;
-    case 15873: /* module 62 call 1 */
-        return STR_ME_REMOVE_MEMBER;
-    case 15874: /* module 62 call 2 */
-        return STR_ME_SWAP_MEMBER;
-    case 15875: /* module 62 call 3 */
-        return STR_ME_RESET_MEMBERS;
-    case 15876: /* module 62 call 4 */
-        return STR_ME_CHANGE_KEY;
-    case 15877: /* module 62 call 5 */
-        return STR_ME_SET_PRIME;
-    case 15878: /* module 62 call 6 */
-        return STR_ME_CLEAR_PRIME;
-    case 16128: /* module 63 call 0 */
-        return STR_ME_SET_MEMBERS;
-    case 16129: /* module 63 call 1 */
-        return STR_ME_EXECUTE;
-    case 16130: /* module 63 call 2 */
-        return STR_ME_PROPOSE;
-    case 16131: /* module 63 call 3 */
-        return STR_ME_VOTE;
-    case 16132: /* module 63 call 4 */
-        return STR_ME_CLOSE;
-    case 16133: /* module 63 call 5 */
-        return STR_ME_DISAPPROVE_PROPOSAL;
-    case 16384: /* module 64 call 0 */
-        return STR_ME_ADD_MEMBER;
-    case 16385: /* module 64 call 1 */
-        return STR_ME_REMOVE_MEMBER;
-    case 16386: /* module 64 call 2 */
-        return STR_ME_SWAP_MEMBER;
-    case 16387: /* module 64 call 3 */
-        return STR_ME_RESET_MEMBERS;
-    case 16388: /* module 64 call 4 */
-        return STR_ME_CHANGE_KEY;
-    case 16389: /* module 64 call 5 */
-        return STR_ME_SET_PRIME;
-    case 16390: /* module 64 call 6 */
-        return STR_ME_CLEAR_PRIME;
-    case 16640: /* module 65 call 0 */
-        return STR_ME_SET_MEMBERS;
-    case 16641: /* module 65 call 1 */
-        return STR_ME_EXECUTE;
-    case 16642: /* module 65 call 2 */
-        return STR_ME_PROPOSE;
-    case 16643: /* module 65 call 3 */
-        return STR_ME_VOTE;
-    case 16644: /* module 65 call 4 */
-        return STR_ME_CLOSE;
-    case 16645: /* module 65 call 5 */
-        return STR_ME_DISAPPROVE_PROPOSAL;
-    case 16896: /* module 66 call 0 */
-        return STR_ME_ADD_MEMBER;
-    case 16897: /* module 66 call 1 */
-        return STR_ME_REMOVE_MEMBER;
-    case 16898: /* module 66 call 2 */
-        return STR_ME_SWAP_MEMBER;
-    case 16899: /* module 66 call 3 */
-        return STR_ME_RESET_MEMBERS;
-    case 16900: /* module 66 call 4 */
-        return STR_ME_CHANGE_KEY;
-    case 16901: /* module 66 call 5 */
-        return STR_ME_SET_PRIME;
-    case 16902: /* module 66 call 6 */
-        return STR_ME_CLEAR_PRIME;
-    case 17152: /* module 67 call 0 */
-        return STR_ME_SET_MEMBERS;
-    case 17153: /* module 67 call 1 */
-        return STR_ME_EXECUTE;
-    case 17154: /* module 67 call 2 */
-        return STR_ME_PROPOSE;
-    case 17155: /* module 67 call 3 */
-        return STR_ME_VOTE;
-    case 17156: /* module 67 call 4 */
-        return STR_ME_CLOSE;
-    case 17157: /* module 67 call 5 */
-        return STR_ME_DISAPPROVE_PROPOSAL;
-    case 17408: /* module 68 call 0 */
-        return STR_ME_ADD_MEMBER;
-    case 17409: /* module 68 call 1 */
-        return STR_ME_REMOVE_MEMBER;
-    case 17410: /* module 68 call 2 */
-        return STR_ME_SWAP_MEMBER;
-    case 17411: /* module 68 call 3 */
-        return STR_ME_RESET_MEMBERS;
-    case 17412: /* module 68 call 4 */
-        return STR_ME_CHANGE_KEY;
-    case 17413: /* module 68 call 5 */
-        return STR_ME_SET_PRIME;
-    case 17414: /* module 68 call 6 */
-        return STR_ME_CLEAR_PRIME;
     case 17664: /* module 69 call 0 */
         return STR_ME_PROPOSE;
     case 17665: /* module 69 call 1 */
         return STR_ME_SECOND;
-    case 17666: /* module 69 call 2 */
-        return STR_ME_VOTE;
     case 17667: /* module 69 call 3 */
         return STR_ME_EMERGENCY_CANCEL;
     case 17668: /* module 69 call 4 */
@@ -1874,10 +1620,6 @@ const char* _getMethod_Name_V1_ParserFull(uint16_t callPrivIdx)
         return STR_ME_VETO_EXTERNAL;
     case 17673: /* module 69 call 9 */
         return STR_ME_CANCEL_REFERENDUM;
-    case 17674: /* module 69 call 10 */
-        return STR_ME_CANCEL_QUEUED;
-    case 17675: /* module 69 call 11 */
-        return STR_ME_DELEGATE;
     case 17676: /* module 69 call 12 */
         return STR_ME_UNDELEGATE;
     case 17677: /* module 69 call 13 */
@@ -1894,38 +1636,8 @@ const char* _getMethod_Name_V1_ParserFull(uint16_t callPrivIdx)
         return STR_ME_REAP_PREIMAGE;
     case 17683: /* module 69 call 19 */
         return STR_ME_UNLOCK;
-    case 17684: /* module 69 call 20 */
-        return STR_ME_REMOVE_VOTE;
-    case 17685: /* module 69 call 21 */
-        return STR_ME_REMOVE_OTHER_VOTE;
-    case 17686: /* module 69 call 22 */
-        return STR_ME_ENACT_PROPOSAL;
-    case 17687: /* module 69 call 23 */
-        return STR_ME_BLACKLIST;
     case 17688: /* module 69 call 24 */
         return STR_ME_CANCEL_PROPOSAL;
-    case 17920: /* module 70 call 0 */
-        return STR_ME_FEED_VALUES;
-    case 18176: /* module 71 call 0 */
-        return STR_ME_ADD_MEMBER;
-    case 18177: /* module 71 call 1 */
-        return STR_ME_REMOVE_MEMBER;
-    case 18178: /* module 71 call 2 */
-        return STR_ME_SWAP_MEMBER;
-    case 18179: /* module 71 call 3 */
-        return STR_ME_RESET_MEMBERS;
-    case 18180: /* module 71 call 4 */
-        return STR_ME_CHANGE_KEY;
-    case 18181: /* module 71 call 5 */
-        return STR_ME_SET_PRIME;
-    case 18182: /* module 71 call 6 */
-        return STR_ME_CLEAR_PRIME;
-    case 20480: /* module 80 call 0 */
-        return STR_ME_BID;
-    case 23040: /* module 90 call 0 */
-        return STR_ME_LOCK_PRICE;
-    case 23041: /* module 90 call 1 */
-        return STR_ME_UNLOCK_PRICE;
     case 23296: /* module 91 call 0 */
         return STR_ME_SWAP_WITH_EXACT_SUPPLY;
     case 23297: /* module 91 call 1 */
@@ -1952,14 +1664,6 @@ const char* _getMethod_Name_V1_ParserFull(uint16_t callPrivIdx)
         return STR_ME_REFUND_PROVISION;
     case 23308: /* module 91 call 12 */
         return STR_ME_ABORT_PROVISIONING;
-    case 23552: /* module 92 call 0 */
-        return STR_ME_ENABLE_AVERAGE_PRICE;
-    case 23553: /* module 92 call 1 */
-        return STR_ME_DISABLE_AVERAGE_PRICE;
-    case 23554: /* module 92 call 2 */
-        return STR_ME_UPDATE_AVERAGE_PRICE_INTERVAL;
-    case 25600: /* module 100 call 0 */
-        return STR_ME_CANCEL;
     case 26112: /* module 102 call 0 */
         return STR_ME_ADJUST_LOAN;
     case 26113: /* module 102 call 1 */
@@ -1976,28 +1680,6 @@ const char* _getMethod_Name_V1_ParserFull(uint16_t callPrivIdx)
         return STR_ME_EXPAND_POSITION_COLLATERAL;
     case 26119: /* module 102 call 7 */
         return STR_ME_SHRINK_POSITION_DEBIT;
-    case 26368: /* module 103 call 0 */
-        return STR_ME_EXTRACT_SURPLUS_TO_TREASURY;
-    case 26369: /* module 103 call 1 */
-        return STR_ME_AUCTION_COLLATERAL;
-    case 26370: /* module 103 call 2 */
-        return STR_ME_EXCHANGE_COLLATERAL_TO_STABLE;
-    case 26371: /* module 103 call 3 */
-        return STR_ME_SET_EXPECTED_COLLATERAL_AUCTION_SIZE;
-    case 26624: /* module 104 call 0 */
-        return STR_ME_LIQUIDATE;
-    case 26625: /* module 104 call 1 */
-        return STR_ME_SETTLE;
-    case 26626: /* module 104 call 2 */
-        return STR_ME_SET_GLOBAL_PARAMS;
-    case 26627: /* module 104 call 3 */
-        return STR_ME_SET_COLLATERAL_PARAMS;
-    case 26880: /* module 105 call 0 */
-        return STR_ME_EMERGENCY_SHUTDOWN;
-    case 26881: /* module 105 call 1 */
-        return STR_ME_OPEN_COLLATERAL_REFUND;
-    case 26882: /* module 105 call 2 */
-        return STR_ME_REFUND_COLLATERALS;
     case 27136: /* module 106 call 0 */
         return STR_ME_TO_BRIDGED;
     case 27137: /* module 106 call 1 */
@@ -2010,76 +1692,28 @@ const char* _getMethod_Name_V1_ParserFull(uint16_t callPrivIdx)
         return STR_ME_FAST_MATCH_REDEEMS;
     case 29699: /* module 116 call 3 */
         return STR_ME_CLAIM_REDEMPTION;
-    case 29700: /* module 116 call 4 */
-        return STR_ME_UPDATE_HOMA_PARAMS;
-    case 29701: /* module 116 call 5 */
-        return STR_ME_UPDATE_BUMP_ERA_PARAMS;
-    case 29702: /* module 116 call 6 */
-        return STR_ME_RESET_LEDGERS;
     case 29703: /* module 116 call 7 */
         return STR_ME_RESET_CURRENT_ERA;
     case 29704: /* module 116 call 8 */
         return STR_ME_FORCE_BUMP_CURRENT_ERA;
     case 29705: /* module 116 call 9 */
         return STR_ME_FAST_MATCH_REDEEMS_COMPLETELY;
-    case 29952: /* module 117 call 0 */
-        return STR_ME_UPDATE_XCM_DEST_WEIGHT_AND_FEE;
     case 30720: /* module 120 call 0 */
         return STR_ME_DEPOSIT_DEX_SHARE;
     case 30721: /* module 120 call 1 */
         return STR_ME_WITHDRAW_DEX_SHARE;
     case 30722: /* module 120 call 2 */
         return STR_ME_CLAIM_REWARDS;
-    case 30723: /* module 120 call 3 */
-        return STR_ME_UPDATE_INCENTIVE_REWARDS;
-    case 30724: /* module 120 call 4 */
-        return STR_ME_UPDATE_DEX_SAVING_REWARDS;
-    case 30725: /* module 120 call 5 */
-        return STR_ME_UPDATE_CLAIM_REWARD_DEDUCTION_RATES;
-    case 30976: /* module 121 call 0 */
-        return STR_ME_CREATE_CLASS;
-    case 30977: /* module 121 call 1 */
-        return STR_ME_MINT;
     case 30978: /* module 121 call 2 */
         return STR_ME_TRANSFER;
-    case 30979: /* module 121 call 3 */
-        return STR_ME_BURN;
-    case 30980: /* module 121 call 4 */
-        return STR_ME_BURN_WITH_REMARK;
-    case 30981: /* module 121 call 5 */
-        return STR_ME_DESTROY_CLASS;
-    case 30982: /* module 121 call 6 */
-        return STR_ME_UPDATE_CLASS_PROPERTIES;
-    case 31232: /* module 122 call 0 */
-        return STR_ME_REGISTER_FOREIGN_ASSET;
-    case 31233: /* module 122 call 1 */
-        return STR_ME_UPDATE_FOREIGN_ASSET;
-    case 31234: /* module 122 call 2 */
-        return STR_ME_REGISTER_STABLE_ASSET;
-    case 31235: /* module 122 call 3 */
-        return STR_ME_UPDATE_STABLE_ASSET;
-    case 31236: /* module 122 call 4 */
-        return STR_ME_REGISTER_ERC20_ASSET;
-    case 31237: /* module 122 call 5 */
-        return STR_ME_UPDATE_ERC20_ASSET;
-    case 31238: /* module 122 call 6 */
-        return STR_ME_REGISTER_NATIVE_ASSET;
-    case 31239: /* module 122 call 7 */
-        return STR_ME_UPDATE_NATIVE_ASSET;
     case 33280: /* module 130 call 0 */
         return STR_ME_ETH_CALL;
     case 33281: /* module 130 call 1 */
         return STR_ME_CALL;
-    case 33282: /* module 130 call 2 */
-        return STR_ME_SCHEDULED_CALL;
     case 33283: /* module 130 call 3 */
         return STR_ME_CREATE;
     case 33284: /* module 130 call 4 */
         return STR_ME_CREATE2;
-    case 33285: /* module 130 call 5 */
-        return STR_ME_CREATE_NFT_CONTRACT;
-    case 33286: /* module 130 call 6 */
-        return STR_ME_CREATE_PREDEPLOY_CONTRACT;
     case 33287: /* module 130 call 7 */
         return STR_ME_TRANSFER_MAINTAINER;
     case 33288: /* module 130 call 8 */
@@ -2098,8 +1732,6 @@ const char* _getMethod_Name_V1_ParserFull(uint16_t callPrivIdx)
         return STR_ME_CLAIM_ACCOUNT;
     case 33793: /* module 132 call 1 */
         return STR_ME_CLAIM_DEFAULT_ACCOUNT;
-    case 51200: /* module 200 call 0 */
-        return STR_ME_CREATE_POOL;
     case 51201: /* module 200 call 1 */
         return STR_ME_MINT;
     case 51202: /* module 200 call 2 */
@@ -2110,24 +1742,6 @@ const char* _getMethod_Name_V1_ParserFull(uint16_t callPrivIdx)
         return STR_ME_REDEEM_SINGLE;
     case 51205: /* module 200 call 5 */
         return STR_ME_REDEEM_MULTI;
-    case 51206: /* module 200 call 6 */
-        return STR_ME_MODIFY_A;
-    case 7680: /* module 30 call 0 */
-        return STR_ME_SET_VALIDATION_DATA;
-    case 7681: /* module 30 call 1 */
-        return STR_ME_SUDO_SEND_UPWARD_MESSAGE;
-    case 7682: /* module 30 call 2 */
-        return STR_ME_AUTHORIZE_UPGRADE;
-    case 7683: /* module 30 call 3 */
-        return STR_ME_ENACT_AUTHORIZED_UPGRADE;
-    case 65280: /* module 255 call 0 */
-        return STR_ME_SUDO;
-    case 65281: /* module 255 call 1 */
-        return STR_ME_SUDO_UNCHECKED_WEIGHT;
-    case 65282: /* module 255 call 2 */
-        return STR_ME_SET_KEY;
-    case 65283: /* module 255 call 3 */
-        return STR_ME_SUDO_AS;
 #endif
     default:
         return NULL;
