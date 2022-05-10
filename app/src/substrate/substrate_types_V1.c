@@ -855,10 +855,10 @@ parser_error_t _toStringAccountVote_V1(
     CLEAN_AND_CHECK()
     switch (v->value) {
     case 0:
-        _toStringAccountVoteStandard_V1(&v->voteStandard, outValue, outValueLen, pageIdx, pageCount);
+        CHECK_ERROR(_toStringAccountVoteStandard_V1(&v->voteStandard, outValue, outValueLen, pageIdx, pageCount));
         break;
     case 1:
-        _toStringAccountVoteSplit_V1(&v->voteSplit, outValue, outValueLen, pageIdx, pageCount);
+        CHECK_ERROR(_toStringAccountVoteSplit_V1(&v->voteSplit, outValue, outValueLen, pageIdx, pageCount));
         break;
     default:
         return parser_unexpected_value;
