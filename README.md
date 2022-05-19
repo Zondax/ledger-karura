@@ -28,7 +28,7 @@ Please:
 - **Do not use in production**
 - **Do not use a Ledger device with funds for development purposes.**
 - **Have a separate and marked device that is used ONLY for development and testing**
-# Karura  1.2060.x
+# Karura  1.2062.x
 
 ## System
 
@@ -507,7 +507,6 @@ Please:
 | :---------- |:------------:|:--------:|:--------:|:--------|
 |Liquidate |    |   |   | `CurrencyId` currency_id <br/>`LookupasStaticLookupSource` who <br/> |
 |Settle |    |   |   | `CurrencyId` currency_id <br/>`LookupasStaticLookupSource` who <br/> |
-|Set global params |    |   |   | `Rate` global_interest_rate_per_sec <br/> |
 |Set collateral params |    |   |   | `CurrencyId` currency_id <br/>`ChangeOptionRate` interest_rate_per_sec <br/>`ChangeOptionRatio` liquidation_ratio <br/>`ChangeOptionRate` liquidation_penalty <br/>`ChangeOptionRatio` required_collateral_ratio <br/>`ChangeBalance` maximum_total_debit_value <br/> |
 
 ## EmergencyShutdown
