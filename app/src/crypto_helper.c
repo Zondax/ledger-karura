@@ -74,7 +74,7 @@ uint8_t crypto_SS58EncodePubkey(uint8_t *buffer, uint16_t buffer_len,
     MEMZERO(buffer, buffer_len);
 
     uint8_t hash[64];
-      uint8_t unencoded[36];
+    uint8_t unencoded[36];
 
     const uint8_t prefixSize = crypto_SS58CalculatePrefix(addressType, unencoded);
     if (prefixSize == 0) {
