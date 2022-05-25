@@ -173,7 +173,7 @@ __Z_INLINE void handleSignSr25519(volatile uint32_t *flags, volatile uint32_t *t
     }
 
     view_review_init(tx_getItem, tx_getNumItems, app_return_sr25519);
-    view_review_show();
+    view_review_show(0x3);
     *flags |= IO_ASYNCH_REPLY;
 }
 #endif
