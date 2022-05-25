@@ -507,6 +507,13 @@ typedef struct {
     pd_Balance_t min_decrease_debit_value;
 } pd_honzon_shrink_position_debit_V1_t;
 
+#define PD_CALL_HONZON_ADJUST_LOAN_BY_DEBIT_VALUE_V1 8
+typedef struct {
+    pd_CurrencyId_V1_t currency_id;
+    pd_Amount_V1_t collateral_adjustment;
+    pd_Amount_V1_t debit_value_adjustment;
+} pd_honzon_adjust_loan_by_debit_value_V1_t;
+
 #define PD_CALL_HONZONBRIDGE_TO_BRIDGED_V1 0
 typedef struct {
     pd_Compactu128_t amount;
@@ -782,6 +789,7 @@ typedef union {
     pd_honzon_unauthorize_all_V1_t honzon_unauthorize_all_V1;
     pd_honzon_expand_position_collateral_V1_t honzon_expand_position_collateral_V1;
     pd_honzon_shrink_position_debit_V1_t honzon_shrink_position_debit_V1;
+    pd_honzon_adjust_loan_by_debit_value_V1_t honzon_adjust_loan_by_debit_value_V1;
     pd_honzonbridge_to_bridged_V1_t honzonbridge_to_bridged_V1;
     pd_honzonbridge_from_bridged_V1_t honzonbridge_from_bridged_V1;
     pd_homa_mint_V1_t homa_mint_V1;

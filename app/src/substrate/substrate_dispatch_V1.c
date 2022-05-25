@@ -774,6 +774,15 @@ __Z_INLINE parser_error_t _readMethod_honzon_shrink_position_debit_V1(
     return parser_ok;
 }
 
+__Z_INLINE parser_error_t _readMethod_honzon_adjust_loan_by_debit_value_V1(
+    parser_context_t* c, pd_honzon_adjust_loan_by_debit_value_V1_t* m)
+{
+    CHECK_ERROR(_readCurrencyId_V1(c, &m->currency_id))
+    CHECK_ERROR(_readAmount_V1(c, &m->collateral_adjustment))
+    CHECK_ERROR(_readAmount_V1(c, &m->debit_value_adjustment))
+    return parser_ok;
+}
+
 __Z_INLINE parser_error_t _readMethod_honzonbridge_to_bridged_V1(
     parser_context_t* c, pd_honzonbridge_to_bridged_V1_t* m)
 {
@@ -1326,6 +1335,9 @@ parser_error_t _readMethod_V1(
     case 26119: /* module 102 call 7 */
         CHECK_ERROR(_readMethod_honzon_shrink_position_debit_V1(c, &method->basic.honzon_shrink_position_debit_V1))
         break;
+    case 26120: /* module 102 call 8 */
+        CHECK_ERROR(_readMethod_honzon_adjust_loan_by_debit_value_V1(c, &method->basic.honzon_adjust_loan_by_debit_value_V1))
+        break;
     case 27136: /* module 106 call 0 */
         CHECK_ERROR(_readMethod_honzonbridge_to_bridged_V1(c, &method->basic.honzonbridge_to_bridged_V1))
         break;
@@ -1680,6 +1692,8 @@ const char* _getMethod_Name_V1(uint8_t moduleIdx, uint8_t callIdx)
         return STR_ME_EXPAND_POSITION_COLLATERAL;
     case 26119: /* module 102 call 7 */
         return STR_ME_SHRINK_POSITION_DEBIT;
+    case 26120: /* module 102 call 8 */
+        return STR_ME_ADJUST_LOAN_BY_DEBIT_VALUE;
     case 27136: /* module 106 call 0 */
         return STR_ME_TO_BRIDGED;
     case 27137: /* module 106 call 1 */
@@ -1943,6 +1957,8 @@ uint8_t _getMethod_NumItems_V1(uint8_t moduleIdx, uint8_t callIdx)
     case 26118: /* module 102 call 6 */
         return 3;
     case 26119: /* module 102 call 7 */
+        return 3;
+    case 26120: /* module 102 call 8 */
         return 3;
     case 27136: /* module 106 call 0 */
         return 1;
@@ -2867,6 +2883,17 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
             return STR_IT_decrease_collateral;
         case 2:
             return STR_IT_min_decrease_debit_value;
+        default:
+            return NULL;
+        }
+    case 26120: /* module 102 call 8 */
+        switch (itemIdx) {
+        case 0:
+            return STR_IT_currency_id;
+        case 1:
+            return STR_IT_collateral_adjustment;
+        case 2:
+            return STR_IT_debit_value_adjustment;
         default:
             return NULL;
         }
@@ -4603,6 +4630,26 @@ parser_error_t _getMethod_ItemValue_V1(
         default:
             return parser_no_data;
         }
+    case 26120: /* module 102 call 8 */
+        switch (itemIdx) {
+        case 0: /* honzon_adjust_loan_by_debit_value_V1 - currency_id */;
+            return _toStringCurrencyId_V1(
+                &m->basic.honzon_adjust_loan_by_debit_value_V1.currency_id,
+                outValue, outValueLen,
+                pageIdx, pageCount);
+        case 1: /* honzon_adjust_loan_by_debit_value_V1 - collateral_adjustment */;
+            return _toStringAmount_V1(
+                &m->basic.honzon_adjust_loan_by_debit_value_V1.collateral_adjustment,
+                outValue, outValueLen,
+                pageIdx, pageCount);
+        case 2: /* honzon_adjust_loan_by_debit_value_V1 - debit_value_adjustment */;
+            return _toStringAmount_V1(
+                &m->basic.honzon_adjust_loan_by_debit_value_V1.debit_value_adjustment,
+                outValue, outValueLen,
+                pageIdx, pageCount);
+        default:
+            return parser_no_data;
+        }
     case 27136: /* module 106 call 0 */
         switch (itemIdx) {
         case 0: /* honzonbridge_to_bridged_V1 - amount */;
@@ -5209,6 +5256,7 @@ bool _getMethod_IsNestingSupported_V1(uint8_t moduleIdx, uint8_t callIdx)
     case 26117: // Honzon:Unauthorize all
     case 26118: // Honzon:Expand position collateral
     case 26119: // Honzon:Shrink position debit
+    case 26120: // Honzon:Adjust loan by debit value
     case 27136: // HonzonBridge:To bridged
     case 27137: // HonzonBridge:From bridged
     case 29696: // Homa:Mint
