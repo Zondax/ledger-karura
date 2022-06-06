@@ -61,13 +61,14 @@ typedef enum {
 #define COIN_NAME "Karura"
 #define COIN_TICKER "KAR "
 
-#define COIN_SECRET_REQUIRED_CLICKS 10
-
 #define MENU_MAIN_APP_LINE1 "Karura"
 #define MENU_MAIN_APP_LINE2 "Ready"
 #define MENU_MAIN_APP_LINE2_SECRET "KAR RECOVERY"
 #define APPVERSION_LINE1 "Karura"
 #define APPVERSION_LINE2 "v" APPVERSION
+
+#define ACCOUNT_DEFAULT "Legacy"
+#define ACCOUNT_SECONDARY "Crowdloan"
 
 #ifdef __cplusplus
 }

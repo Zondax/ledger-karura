@@ -1,5 +1,5 @@
 /** ******************************************************************************
- *  (c) 2020 Zondax GmbH
+ *  (c) 2018 - 2022 Zondax GmbH
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,36 +25,45 @@ const defaultOptions = {
   X11: false,
 }
 
-jest.setTimeout(60000)
+jest.setTimeout(180000)
 
 beforeAll(async () => {
   await Zemu.checkAndPullImage()
 })
 
-async function activateSecretMode(sim: any) {
-  // Get to Zondax.ch menu
-  for (let i = 0; i < 3; i += 1) {
-    await sim.clickRight()
-  }
+async function activateCrowdloanMode(sim: any) {
+  // Crowdloan can be activate only when expert mode is enabled
+  await sim.clickRight()
+  await sim.clickRight()
+  await sim.clickBoth('', false)
+  await sim.clickBoth('', false)
+  await sim.clickLeft()
+  await sim.clickLeft()
 
-  // Activate secret features
-  for (let i = 0; i < 10; i += 1) {
-    await sim.clickBoth('', false)
-  }
+  // Activale Expert mode
+  await sim.clickRight()
+  await sim.clickBoth()
 
-  const reviewSteps = sim.startOptions.model === 'nanos' ? 7 : 6
+  //Activate Crowdloan
+  await sim.clickRight()
+  await sim.clickBoth()
 
   // Review warning message
+  const reviewSteps = sim.startOptions.model === 'nanos' ? 6 : 5
   for (let i = 0; i < reviewSteps; i += 1) {
     await sim.clickRight()
   }
 
   // Accept
   await sim.clickBoth()
+
+  // Just go forward
+  await sim.clickRight()
+  await sim.clickRight()
 }
 
-describe('Recovery', function () {
-  test.each(models)('main secret menu (%s)', async function (m) {
+describe('Crowdloan', function () {
+  test.each(models)('crowdloan menu', async function (m) {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...defaultOptions, model: m.name })
@@ -74,7 +83,7 @@ describe('Recovery', function () {
       expect(resp.return_code).toEqual(0x9000)
       expect(resp.error_message).toEqual('No errors')
 
-      await activateSecretMode(sim)
+      await activateCrowdloanMode(sim)
 
       resp = await app.getAddress(0x80000000, 0x80000000, 0x80000000)
 
