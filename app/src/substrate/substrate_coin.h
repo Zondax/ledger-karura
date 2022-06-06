@@ -61,8 +61,6 @@ typedef enum {
 #define COIN_NAME "Karura"
 #define COIN_TICKER "KAR "
 
-#define COIN_SECRET_REQUIRED_CLICKS 10
-
 #define MENU_MAIN_APP_LINE1 "Karura"
 #define MENU_MAIN_APP_LINE2 "Ready"
 #define MENU_MAIN_APP_LINE2_SECRET "KAR RECOVERY"
