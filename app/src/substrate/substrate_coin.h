@@ -63,7 +63,6 @@ typedef enum {
 
 #define MENU_MAIN_APP_LINE1 "Karura"
 #define MENU_MAIN_APP_LINE2 "Ready"
-#define MENU_MAIN_APP_LINE2_SECRET "KAR RECOVERY"
 #define APPVERSION_LINE1 "Karura"
 #define APPVERSION_LINE2 "v" APPVERSION
 
