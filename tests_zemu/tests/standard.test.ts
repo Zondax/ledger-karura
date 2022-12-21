@@ -22,7 +22,7 @@ import { APP_SEED, models } from './common'
 import ed25519 from 'ed25519-supercop'
 // @ts-ignore
 import { blake2bFinal, blake2bInit, blake2bUpdate } from 'blakejs'
-import { txBalances_transfer, txProxy_proxy, txSession_setKeys } from './zemu_blobs'
+import { txBalances_transfer, txProxy_proxy, txSession_setKeys, txUtility_batch } from './zemu_blobs'
 
 const defaultOptions = {
   ...DEFAULT_START_OPTIONS,
@@ -32,10 +32,6 @@ const defaultOptions = {
 }
 
 jest.setTimeout(180000)
-
-beforeAll(async () => {
-  await Zemu.checkAndPullImage()
-})
 
 describe('Standard', function () {
   test.each(models)('can start and stop container', async function (m) {
@@ -297,6 +293,45 @@ describe('Standard', function () {
       const signatureRequest = app.sign(pathAccount, pathChange, pathIndex, txBlob)
       await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
       await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-proxy_balances_transfer`)
+
+      const signatureResponse = await signatureRequest
+      console.log(signatureResponse)
+
+      expect(signatureResponse.return_code).toEqual(0x9000)
+      expect(signatureResponse.error_message).toEqual('No errors')
+
+      // Now verify the signature
+      let prehash = txBlob
+      if (txBlob.length > 256) {
+        const context = blake2bInit(32)
+        blake2bUpdate(context, txBlob)
+        prehash = Buffer.from(blake2bFinal(context))
+      }
+      const valid = ed25519.verify(signatureResponse.signature.slice(1), prehash, pubKey)
+      expect(valid).toEqual(true)
+    } finally {
+      await sim.close()
+    }
+  })
+
+  test.each(models)('Utility batch', async function (m) {
+    const sim = new Zemu(m.path)
+    try {
+      await sim.start({ ...defaultOptions, model: m.name })
+      const app = newKaruraApp(sim.getTransport())
+      const pathAccount = 0x80000000
+      const pathChange = 0x80000000
+      const pathIndex = 0x80000000
+
+      const txBlob = Buffer.from(txUtility_batch, 'hex')
+
+      const responseAddr = await app.getAddress(pathAccount, pathChange, pathIndex)
+      const pubKey = Buffer.from(responseAddr.pubKey, 'hex')
+
+      // do not wait here.. we need to navigate
+      const signatureRequest = app.sign(pathAccount, pathChange, pathIndex, txBlob)
+      await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
+      await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-utility_batch`)
 
       const signatureResponse = await signatureRequest
       console.log(signatureResponse)
