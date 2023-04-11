@@ -1650,6 +1650,7 @@ parser_error_t _toStringbool(
     uint8_t* pageCount)
 {
     CLEAN_AND_CHECK()
+    UNUSED(pageIdx);
 
     *pageCount = 1;
     switch (*v) {
@@ -1786,6 +1787,7 @@ parser_error_t _toStringTokenSymbol(
     uint8_t* pageCount)
 {
     CLEAN_AND_CHECK()
+    UNUSED(pageIdx);
     *pageCount = 1;
     switch (v->value) {
     case 0:
@@ -5290,6 +5292,7 @@ parser_error_t _toStringProxyType(
     uint8_t* pageCount)
 {
     CLEAN_AND_CHECK()
+    UNUSED(pageIdx);
     *pageCount = 1;
     switch (v->value) {
     case 0:
