@@ -34,6 +34,9 @@ const defaultOptions = {
   X11: false,
 }
 
+const expected_address = 'sARL4vJukMwQAZR8EBJKtFQPbLmhpy2wePobU93avf99WPi'
+const expected_pk = 'aaf2c777609f130dadcd0de83a7c03dfc3e89ffe3cc2f7c60b67fe6fe91a6737'
+
 jest.setTimeout(180000)
 
 describe('SR25519', function () {
@@ -49,9 +52,6 @@ describe('SR25519', function () {
 
       expect(resp.return_code).toEqual(0x9000)
       expect(resp.error_message).toEqual('No errors')
-
-      const expected_address = 'sARL4vJukMwQAZR8EBJKtFQPbLmhpy2wePobU93avf99WPi'
-      const expected_pk = 'aaf2c777609f130dadcd0de83a7c03dfc3e89ffe3cc2f7c60b67fe6fe91a6737'
 
       expect(resp.address).toEqual(expected_address)
       expect(resp.pubKey).toEqual(expected_pk)
@@ -77,9 +77,6 @@ describe('SR25519', function () {
 
       expect(resp.return_code).toEqual(0x9000)
       expect(resp.error_message).toEqual('No errors')
-
-      const expected_address = 'sARL4vJukMwQAZR8EBJKtFQPbLmhpy2wePobU93avf99WPi'
-      const expected_pk = 'aaf2c777609f130dadcd0de83a7c03dfc3e89ffe3cc2f7c60b67fe6fe91a6737'
 
       expect(resp.address).toEqual(expected_address)
       expect(resp.pubKey).toEqual(expected_pk)
@@ -144,7 +141,7 @@ describe('SR25519', function () {
         prehash = Buffer.from(blake2bFinal(context))
       }
       const signingcontext = Buffer.from([])
-      const valid = addon.schnorrkel_verify(pubKey, signingcontext, prehash, signatureResponse.signature.slice(1))
+      const valid = addon.schnorrkel_verify(pubKey, signingcontext, prehash, signatureResponse.signature.subarray(1))
       expect(valid).toEqual(true)
     } finally {
       await sim.close()
@@ -192,7 +189,7 @@ describe('SR25519', function () {
         prehash = Buffer.from(blake2bFinal(context))
       }
       const signingcontext = Buffer.from([])
-      const valid = addon.schnorrkel_verify(pubKey, signingcontext, prehash, signatureResponse.signature.slice(1))
+      const valid = addon.schnorrkel_verify(pubKey, signingcontext, prehash, signatureResponse.signature.subarray(1))
       expect(valid).toEqual(true)
     } finally {
       await sim.close()
@@ -244,7 +241,7 @@ describe('SR25519', function () {
         prehash = Buffer.from(blake2bFinal(context))
       }
       const signingcontext = Buffer.from([])
-      const valid = addon.schnorrkel_verify(pubKey, signingcontext, prehash, signatureResponse.signature.slice(1))
+      const valid = addon.schnorrkel_verify(pubKey, signingcontext, prehash, signatureResponse.signature.subarray(1))
       expect(valid).toEqual(true)
     } finally {
       await sim.close()

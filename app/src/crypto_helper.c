@@ -17,7 +17,7 @@
 #include "crypto_helper.h"
 #include "base58.h"
 
-#if defined(TARGET_NANOS) || defined(TARGET_NANOX) || defined(TARGET_NANOS2)
+#if defined(TARGET_NANOS) || defined(TARGET_NANOX) || defined(TARGET_NANOS2) || defined(TARGET_STAX)
 #include "cx.h"
 
 int ss58hash(const unsigned char *in, unsigned int inLen,
@@ -85,7 +85,7 @@ uint8_t crypto_SS58EncodePubkey(uint8_t *buffer, uint16_t buffer_len,
     ss58hash((uint8_t *) unencoded, 32 + prefixSize, hash, 64);
     unencoded[32 + prefixSize] = hash[0];
     unencoded[33 + prefixSize] = hash[1];
- 
+
     size_t outLen = buffer_len;
     encode_base58(unencoded, 34 + prefixSize, buffer, &outLen);
 
